@@ -14,6 +14,5 @@ public class MyController {
 	@RequestMapping("/test1")
 	public String test1() {
 		return "test1";
-		//   /WEB-INF/views/test1.jsp 찾아서 web 으로 보여줌
 	}
 }
