@@ -15,7 +15,7 @@ java {
 }
 
 eclipse.wtp.facet {
-	facet name : 'jsp.web', version: '5.0'
+	facet name : 'jst.web', version: '5.0'
 }
 
 repositories {
