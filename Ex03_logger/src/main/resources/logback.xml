@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>
+				<!-- %d{yyyy:MM:dd} %-5level  [%thread] %logger{35} : %msg%n   -->
+			</pattern>
+		</encoder>
+	</appender> 
+	
+	<appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>src/main/resources/logs/tjoeun_log.log</file>
+		
+		<encoder>
+			<pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%thread] [%-5level] %logger{35} - %msg%n
+			</pattern>
+		</encoder>
+		
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>
+				src/main/resources/logs/tjoeun_%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<logger name="com.study.springboot" level="info" additivity="false">
+		<!-- <appender-ref ref="consoleAppender" /> -->
+		<appender-ref ref="fileAppender" />
+	</logger>
+	<root level="error">
+		<appender-ref ref="consoleAppender" />
+	</root>
+</configuration>
