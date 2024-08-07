@@ -1,6 +1,8 @@
 package com.study.springboot.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +59,7 @@ public class BoardController {
 	      - 변수에 저장할 때 : request.getParameter("키")
 	      ex)
 	      @RequestMapping("/detail")
-		  public String detailView(@RequestParam(value="boardno") String bno,
+		  public String detailView(@RequestParam("boardno") String bno,
 								   @RequestParam(value="writer", defaultValue="홍길동") String w) {
 			
 			return "detail";
@@ -70,4 +72,38 @@ public class BoardController {
 		model.addAttribute("detailBoard", boardService.detailBoard(bno)) ;
 		return "detail";
 	}
+	
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam("boardno") String bno) {
+		int result = boardService.deleteBoard(bno);
+		return "redirect:list";
+	}
+	
+	@RequestMapping("/writerForm")
+	public String writerForm() {
+		return "writerForm";
+	}
+	
+	@RequestMapping("/write")
+	public String write(HttpServletRequest request) {
+		String title = request.getParameter("title");
+		String writer = request.getParameter("writer");
+		String content = request.getParameter("content");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", writer);
+		map.put("title", title);
+		map.put("content", content);
+		
+		// boardService.insertBoard(map);
+		
+		return "redirect:list";
+	}
+	
+	
+	
+	
+	
+	
 }

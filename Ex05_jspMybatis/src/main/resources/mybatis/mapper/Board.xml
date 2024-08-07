@@ -15,6 +15,10 @@
 	<select id="detailBoard" resultType="com.study.springboot.dto.Board">
 		select * from boardtest where boardno = #{boardno}
 	</select>
+	
+	<delete id="deleteBoard">
+		delete from boardtest where boardno = #{boardno}
+	</delete>
 </mapper>
 
 

@@ -30,10 +30,15 @@
 				<td>${bList.boardno}</td>
 				<td><a href="detail?boardno=${bList.boardno}">${bList.title}</a></td>
 				<td>${bList.writer}</td>
-				<td><a href=""><button type="button" class="btn btn-outline-danger">버튼</button></a></td>
+				<td><a href="delete?boardno=${bList.boardno}"><button type="button" class="btn btn-outline-danger">삭제</button></a></td>
 			</tr>
 		</c:forEach>
 	</table>
-	<p align="right"><a href=""><button type="button" class="btn btn-info">글작성</button></a></p>
+	<p align="right"><a href="writerForm"><button type="button" class="btn btn-info">글작성</button></a></p>
 </body>
 </html>
+
+
+
+
+

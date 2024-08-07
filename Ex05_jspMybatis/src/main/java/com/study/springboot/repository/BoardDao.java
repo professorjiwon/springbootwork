@@ -11,6 +11,7 @@ public interface BoardDao {
 	public int totalRecord();
 	public List<Board> list();
 	public Board detailBoard(String boardno);
+	public int deleteBoard(String boardno);
 }
 
 
