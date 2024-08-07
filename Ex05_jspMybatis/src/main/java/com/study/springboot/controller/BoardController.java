@@ -76,7 +76,7 @@ public class BoardController {
 	
 	@RequestMapping("/delete")
 	public String delete(@RequestParam("boardno") String bno) {
-		int result = boardService.deleteBoard(bno);
+		boardService.deleteBoard(bno);
 		return "redirect:list";
 	}
 	
@@ -96,14 +96,8 @@ public class BoardController {
 		map.put("title", title);
 		map.put("content", content);
 		
-		// boardService.insertBoard(map);
+		boardService.insertBoard(map);
 		
 		return "redirect:list";
 	}
-	
-	
-	
-	
-	
-	
 }

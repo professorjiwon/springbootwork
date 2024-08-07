@@ -19,6 +19,10 @@
 	<delete id="deleteBoard">
 		delete from boardtest where boardno = #{boardno}
 	</delete>
+	
+	<insert id="insertBoard">
+		insert into boardtest values(seq_boardtest.nextval, #{title}, #{name}, #{content})
+	</insert>
 </mapper>
 
 
