@@ -62,14 +62,6 @@ public class BoardController {
 			
 			return "detail";
 		  }
-	      
-	   3. 메서드 매개변수에 직접 이름(전달한 키와 동일한 이름)을 넣어줌
-	      ex)
-		  @RequestMapping("/detail")
-		  public String detailView(String boardno, String writer) {
-			   // 반드시 앞에서 넘겨준 키값과 동일하게 변수이름을 넣어야 함. default사용 못함
-			return "detail";
-		  }
 	 */
 
 	@RequestMapping("/detail")
