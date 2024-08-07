@@ -1,10 +1,13 @@
 package com.study.springboot.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.study.springboot.dto.Board;
 import com.study.springboot.service.BoardService;
 
 @Controller
@@ -31,6 +34,7 @@ public class BoardController {
 	@RequestMapping("/list")
 	public String userListPage(Model model){
 		model.addAttribute("totalRecord", boardService.totalRecord());
+		model.addAttribute("list", boardService.list());
 		return "list";
 	}
 

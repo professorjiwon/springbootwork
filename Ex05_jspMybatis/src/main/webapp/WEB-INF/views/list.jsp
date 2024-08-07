@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,14 @@
 				<th>작성자</th>
 				<th>삭제</th>
 			</tr>
-			
+			<c:forEach items="${list}" var="bList">
+				<tr>
+					<td>${bList.boardno}</td>
+					<td>${bList.title}</td>
+					<td>${bList.writer}</td>
+					<td><a><button>버튼</button></a></td>
+				</tr>
+			</c:forEach>
 		</table>
 		<p><a href=""><button type="button" class="btn btn-info">글작성</button></a></p>
 </body>

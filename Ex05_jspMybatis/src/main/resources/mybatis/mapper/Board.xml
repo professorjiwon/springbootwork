@@ -7,4 +7,8 @@
 	<select id="totalRecord" resultType="_int">
 		select count(*) from boardtest 
 	</select>
+	
+	<select id="list" resultType="com.study.springboot.dto.Board">
+		select * from boardtest order by boardno desc
+	</select>
 </mapper>
