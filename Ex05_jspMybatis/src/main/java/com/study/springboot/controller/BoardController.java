@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.study.springboot.dto.Board;
 import com.study.springboot.service.BoardService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class BoardController {
@@ -37,5 +40,42 @@ public class BoardController {
 		model.addAttribute("list", boardService.list());
 		return "list";
 	}
+	
+	/*
+	 * 요청시 전달한값(파라메터)를 받는 방법
+	   1. HttpServletRequest를 이용하여 전달받는 방법
+	      : 메서드의 매개변수에 넣는방법
+	      ex) 
+	      @RequestMapping("/detail")
+		  public String detailView(HttpServletRequest request) {
+				String bno = request.getParameter("boardno");
+				return "detail";
+		  }
+	      
+	   2. @RequestParam 어노테이션을 사용 하는 방법
+	      : 메서드 위에 어노테이션을 넣는 방법
+	      - 변수에 저장할 때 : request.getParameter("키")
+	      ex)
+	      @RequestMapping("/detail")
+		  public String detailView(@RequestParam(value="boardno") String bno,
+								   @RequestParam(value="writer", defaultValue="홍길동") String w) {
+			
+			return "detail";
+		  }
+	      
+	   3. 메서드 매개변수에 직접 이름(전달한 키와 동일한 이름)을 넣어줌
+	      ex)
+		  @RequestMapping("/detail")
+		  public String detailView(String boardno, String writer) {
+			   // 반드시 앞에서 넘겨준 키값과 동일하게 변수이름을 넣어야 함. default사용 못함
+			return "detail";
+		  }
+	 */
 
+	@RequestMapping("/detail")
+	public String detailView(HttpServletRequest request, Model model) {
+		String bno = request.getParameter("boardno");
+		model.addAttribute("detailBoard", boardService.detailBoard(bno)) ;
+		return "detail";
+	}
 }

@@ -11,4 +11,12 @@
 	<select id="list" resultType="com.study.springboot.dto.Board">
 		select * from boardtest order by boardno desc
 	</select>
+	
+	<select id="detailBoard" resultType="com.study.springboot.dto.Board">
+		select * from boardtest where boardno = #{boardno}
+	</select>
 </mapper>
+
+
+
+

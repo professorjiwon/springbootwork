@@ -10,6 +10,7 @@ import com.study.springboot.dto.Board;
 public interface BoardDao {
 	public int totalRecord();
 	public List<Board> list();
+	public Board detailBoard(String boardno);
 }
 
 

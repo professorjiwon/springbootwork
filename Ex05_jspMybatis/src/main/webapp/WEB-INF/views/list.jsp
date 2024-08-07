@@ -15,25 +15,25 @@
 </style>
 </head>
 <body>
-		<br>
-		<h1 align="center">게 시 판</h1>
-		<p class="alignRight">총 레코드수 : ${totalRecord}</p>
-		<table class="table">
+	<br>
+	<h1 align="center">게 시 판</h1>
+	<p class="alignRight">총 레코드수 : ${totalRecord}</p>
+	<table class="table">
+		<tr align="center">
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>삭제</th>
+		</tr>
+		<c:forEach items="${list}" var="bList">
 			<tr align="center">
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>삭제</th>
+				<td>${bList.boardno}</td>
+				<td><a href="detail?boardno=${bList.boardno}">${bList.title}</a></td>
+				<td>${bList.writer}</td>
+				<td><a href=""><button type="button" class="btn btn-outline-danger">버튼</button></a></td>
 			</tr>
-			<c:forEach items="${list}" var="bList">
-				<tr>
-					<td>${bList.boardno}</td>
-					<td>${bList.title}</td>
-					<td>${bList.writer}</td>
-					<td><a><button>버튼</button></a></td>
-				</tr>
-			</c:forEach>
-		</table>
-		<p><a href=""><button type="button" class="btn btn-info">글작성</button></a></p>
+		</c:forEach>
+	</table>
+	<p align="right"><a href=""><button type="button" class="btn btn-info">글작성</button></a></p>
 </body>
 </html>
