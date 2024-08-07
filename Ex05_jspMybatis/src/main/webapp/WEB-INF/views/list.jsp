@@ -10,14 +10,15 @@
 <style>
 	body {width:800px; margin:0 auto;}
 	a {text-decoration:none; cursor:pointer; color:black;}
+	.alignRight{text-align:right;}
 </style>
 </head>
 <body>
 		<br>
-		<h1>게 시 판</h1>
-		<p class="alignRight">총 레코드수 : </p>
+		<h1 align="center">게 시 판</h1>
+		<p class="alignRight">총 레코드수 : ${totalRecord}</p>
 		<table class="table">
-			<tr>
+			<tr align="center">
 				<th>번호</th>
 				<th>제목</th>
 				<th>작성자</th>
