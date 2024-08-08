@@ -40,4 +40,9 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.insertBoard(map);
 	}
 
+	@Override
+	public int insertBoard(Board b) {
+		return boardDao.insertBoard(b);
+	}
+
 }
