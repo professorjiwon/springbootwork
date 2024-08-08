@@ -25,4 +25,15 @@ public class MyController {
 	public String memberWelcome() {
 		return "member/memWelcome";
 	}
+	
+	@RequestMapping("/loginForm")
+	public String loginForm() {
+		return "security/loginForm";
+	}
+	
+	@RequestMapping("/loginError")
+	public String loginError() {
+		return "security/loginError";
+	}
+	
 }

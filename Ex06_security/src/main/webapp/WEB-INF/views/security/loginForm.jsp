@@ -8,10 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${not empty pageContext.request.userPrincipal}">
-		<h4>Login된 상태</h4>
-		${pageContext.request.userPrincipal.name}님이 로그인하였습니다<br><br>
+	<c:if test="${param.error != null}">
+		Login Error!!!<br>
+		${error_msg}<br><br>
 	</c:if>
-	welcome admin
+	<form action="login_check" method="post">
+		ID : <input name="username"><br>
+		PW : <input name="pwd"><br>
+		<input type="submit" value="LOGIN">
+	</form>
 </body>
 </html>
