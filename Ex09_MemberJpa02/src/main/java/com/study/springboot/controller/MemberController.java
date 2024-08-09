@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,6 +77,19 @@ public class MemberController {
 		List<Member> member = memberService.selectByNameLikeDesc(username);
 		model.addAttribute("mList", member);
 		model.addAttribute("title","NameLikeDesc");
+		return "selectAll";
+	}
+	
+	
+	@RequestMapping("/selectByNameLikeSort")
+	public String selectByNameLikeSort(String name, Model model) {
+		String username = "%" + name + "%";
+		Sort sort = Sort.by(Sort.Order.desc("username"), Sort.Order.asc("email"));
+
+		List<Member> member = memberService.selectByNameLikeSort(username, sort);
+		
+		model.addAttribute("mList", member);
+		model.addAttribute("title","NameLikeSort");
 		return "selectAll";
 	}
 }
