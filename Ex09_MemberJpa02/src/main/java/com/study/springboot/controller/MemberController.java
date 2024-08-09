@@ -24,18 +24,6 @@ public class MemberController {
 		return "menu";
 	}
 	
-	@RequestMapping("/insert")
-	public String insert(@RequestParam("username") String username, Model model) {
-		Member member = Member.builder()
-							  .username(username)
-							  .createDate(LocalDate.now())
-							  .build();
-		Member result = memberService.insert(member);
-		model.addAttribute("member", result);
-		
-		return "insert";
-	}
-	
 	@RequestMapping("/select")
 	public String select(@RequestParam("id") Long id, Model model) {
 		Optional<Member> member = memberService.select(id);
@@ -56,17 +44,6 @@ public class MemberController {
 		return "selectAll";
 	}
 	
-	@RequestMapping("/update")
-	public String update(Member m, Model model) {
-		m.setCreateDate(LocalDate.now());
-		Member member = memberService.update(m);
-		model.addAttribute("member", member);
-		return "update";
-	}
 	
-	@RequestMapping("/delete")
-	public String delete(Long id) {
-		memberService.delete(id);
-		return "menu";
-	}
+	
 }
