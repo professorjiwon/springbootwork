@@ -31,15 +31,10 @@ public class Member {
 	
 	// 엔티티의 생성될때 날짜와시간 저장
 	@CreatedDate
-	@Column(name="created_at")
-	private LocalDateTime createdAt;
+	@Column(name="create_at")
+	private LocalDateTime createAt;
 	
 	@LastModifiedDate  	// 엔티티가 수정될 때 날짜와 시간 저장
 	@Column(name="update_at")
 	private LocalDateTime updateAt;
 }
-
-
-
-
-
