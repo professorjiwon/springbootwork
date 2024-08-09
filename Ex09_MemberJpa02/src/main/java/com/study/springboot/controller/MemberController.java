@@ -28,6 +28,7 @@ public class MemberController {
 	public String selectAll(Model model) {
 		List<Member> list = memberService.selectAll();
 		model.addAttribute("mList", list);
+		model.addAttribute("title","All");
 		return "selectAll";
 	}
 	
@@ -40,18 +41,41 @@ public class MemberController {
 		} else {
 			model.addAttribute("member", null);
 		}
-		
-		return "select_id";
+		model.addAttribute("title","Id");
+		return "select_one";
 	}
 	
 	@RequestMapping("/selectByName")
 	public String selectByName(String name, Model model) {
 		Optional<Member> member = memberService.selectByName(name);
 		model.addAttribute("member", member.get());
-		return "select_name";
+		model.addAttribute("title","Name");
+		return "select_one";
 	}
 	
+	@RequestMapping("/selectByEmail")
+	public String selectByEmail(String email, Model model) {
+		Optional<Member> member = memberService.selectByEmail(email);
+		model.addAttribute("member", member.get());
+		model.addAttribute("title","Email");
+		return "select_one";
+	}
 	
-	
-	
+	@RequestMapping("/selectByNameLike")
+	public String selectByNameLike(String name, Model model) {
+		String username = "%" + name + "%";
+		List<Member> member = memberService.selectByNameLike(username);
+		model.addAttribute("mList", member);
+		model.addAttribute("title","NameLike");
+		return "selectAll";
+	}
+
+	@RequestMapping("/selectByNameLikeDesc")
+	public String selectByNameLikeDesc(String name, Model model) {
+		String username = "%" + name + "%";
+		List<Member> member = memberService.selectByNameLikeDesc(username);
+		model.addAttribute("mList", member);
+		model.addAttribute("title","NameLikeDesc");
+		return "selectAll";
+	}
 }

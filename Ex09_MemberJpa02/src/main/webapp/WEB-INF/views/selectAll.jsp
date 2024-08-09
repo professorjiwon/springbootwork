@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Member JPA #02 - SelectAll</h1>
+	<h1>Member JPA #02 - Select${title}</h1>
 	<c:forEach items="${mList}" var="member">
 		아이디 : ${member.id}<br>
 		이름 : ${member.username}<br>

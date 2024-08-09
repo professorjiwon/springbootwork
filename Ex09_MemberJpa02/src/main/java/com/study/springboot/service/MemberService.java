@@ -30,5 +30,17 @@ public class MemberService {
 		return member;
 	}
 
+	public Optional<Member> selectByEmail(String email) {
+		return memberRepository.findByEmail(email);
+	}
+
+	public List<Member> selectByNameLike(String username) {
+		return memberRepository.findByUsernameLike(username) ;
+	}
+
+	public List<Member> selectByNameLikeDesc(String username) {
+		return memberRepository.findByUsernameLikeOrderByUsernameDesc(username);
+	}
+
 
 }

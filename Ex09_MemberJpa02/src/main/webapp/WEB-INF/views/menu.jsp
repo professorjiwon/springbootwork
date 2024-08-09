@@ -15,7 +15,7 @@
 	<hr>
 	
 	<a href="selectByName?name=홍길동">개별 조회 - By Name</a><br><br>
-	<a href="selectByEmail?email=hong@tjoeun.kr">개별 조회 - By Name</a><br><br>
+	<a href="selectByEmail?email=hong@tjoeun.kr">개별 조회 - By Email</a><br><br>
 	<a href="selectByNameLike?name=홍">리스트 조회 - Name Like</a><br><br>
 	<a href="selectByNameLikeDesc?name=홍">리스트 조회 - Name Like Name Desc</a><br><br>
 </body>
