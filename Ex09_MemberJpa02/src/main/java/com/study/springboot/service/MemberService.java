@@ -14,14 +14,21 @@ public class MemberService {
 	
 	@Autowired
 	MemberRepository memberRepository;
+	
+	public List<Member> selectAll() {
+		return memberRepository.findAll();
+	}
 
-	public Optional<Member> select(Long id) {
+	public Optional<Member> selectById(Long id) {
 												// findById() : Id는 @Id를 의미(primary key)
 		Optional<Member> member = memberRepository.findById(id);
 		return member;
 	}
 
-	public List<Member> selectAll() {
-		return memberRepository.findAll();
+	public Optional<Member> selectByName(String name) {
+		Optional<Member> member = memberRepository.findByUsername(name);
+		return member;
 	}
+
+
 }

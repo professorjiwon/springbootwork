@@ -24,25 +24,33 @@ public class MemberController {
 		return "menu";
 	}
 	
-	@RequestMapping("/select")
-	public String select(@RequestParam("id") Long id, Model model) {
-		Optional<Member> member = memberService.select(id);
-		
-		if(member.isPresent()) {  // isPresent() : 데이터가 있는지 체크. 있으면 true 없으면 false
-			model.addAttribute("member", member.get());  // member.get() : Optional의 wrapping을 풀어서 Member만 가져오기
-		} else {
-			model.addAttribute("member", null);
-		}
-		
-		return "select";
-	}
-	
 	@RequestMapping("/selectAll")
 	public String selectAll(Model model) {
 		List<Member> list = memberService.selectAll();
 		model.addAttribute("mList", list);
 		return "selectAll";
 	}
+	
+	@RequestMapping("/selectById")
+	public String selectById(@RequestParam("id") Long id, Model model) {
+		Optional<Member> member = memberService.selectById(id);
+		
+		if(member.isPresent()) {  
+			model.addAttribute("member", member.get());
+		} else {
+			model.addAttribute("member", null);
+		}
+		
+		return "select_id";
+	}
+	
+	@RequestMapping("/selectByName")
+	public String selectByName(String name, Model model) {
+		Optional<Member> member = memberService.selectByName(name);
+		model.addAttribute("member", member.get());
+		return "select_name";
+	}
+	
 	
 	
 	
