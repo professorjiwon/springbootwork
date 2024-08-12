@@ -15,16 +15,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name="jpaPaging")
+@Entity(name="JPAPAGING")
 public class Member {
 	@Id
 	@SequenceGenerator(
-			name = "pagingseq",
-			sequenceName = "jpaPaging_seq",
+			name = "PAGINGSEQ",
+			sequenceName = "JPAPAGING_SEQ",
 			initialValue = 1,
 			allocationSize = 1
 	)
-	@GeneratedValue (generator="pagingseq")
+	@GeneratedValue (generator="PAGINGSEQ")
 	private Long id;
 	private String name;
 	private String email;

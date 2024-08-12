@@ -21,4 +21,9 @@ public class MemberService {
 	public Page<Member> selectByNameLike(String search, Pageable pageable) {
 		return memberRepository.findByNameLike(search, pageable);
 	}
+
+	public Optional<Member> selectByNameLike(String search) {
+		
+		return memberRepository.findByNameLike(search);
+	}
 }

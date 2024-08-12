@@ -14,5 +14,7 @@ import com.study.springboot.domain.Member;
 @Repository													// Long은 @Id가 붙은 필드의 자료형
 public interface MemberRepository extends JpaRepository<Member, Long> {
 	Page<Member> findByNameLike(String search, Pageable pageable);
+
+	Optional<Member> findByNameLike(String search);
 			
 }

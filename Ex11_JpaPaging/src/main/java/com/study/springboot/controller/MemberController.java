@@ -1,6 +1,7 @@
 package com.study.springboot.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,6 +29,7 @@ public class MemberController {
 	@RequestMapping("/selectByNameLike")
 	public String selectByNameLike(String name, int page, Model model) {
 		String search = name + "%";
+
 		/*
 		 * Pageable 인터페이스
 		   : Spring에서 Pagination을 지원하는 Pageable인터페이스 제공
@@ -65,6 +67,9 @@ public class MemberController {
 		Pageable pageable = PageRequest.of(page-1, 10, sort);
 		
 		Page<Member> result = memberService.selectByNameLike(search, pageable);
+		
+
+	
 		List<Member> content = result.getContent(); 	// 실제 객체가 담긴 List<Member>
 		long totalElements = result.getTotalElements();	// 총 레코드 수
 		int totalPages = result.getTotalPages();		// 총 페이지 수
@@ -78,6 +83,7 @@ public class MemberController {
 		model.addAttribute("size", size);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("numberOfElements", numberOfElements);
+	
 		
 		return "selectList";
 	}
