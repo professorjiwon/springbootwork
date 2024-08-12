@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class FileUploadController {
 	
 	@RequestMapping("fileUpLoad")
 	public @ResponseBody String fileUpLoad(HttpServletRequest request) {
-		String result = "";
+		JSONObject jObj = new JSONObject();
 		try {
 			String filePath = ResourceUtils.getFile("classpath:static/upload/").toPath().toString();
 			System.out.println("파일 저장 위치 : " + filePath);
@@ -44,26 +45,30 @@ public class FileUploadController {
 				String fpn = filePath + "\\" + fileName; 
 				
 				try(BufferedInputStream fin = new BufferedInputStream(filePart.getInputStream());
-				BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(fpn))) {
+				BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(fpn)))      
+				{
 				
-				int data;
-				while(true) {
-					data = fin.read();
-					if(data == -1)
-						break;
-					fout.write(data);
-				}
+					int data;
+					while(true) {
+						data = fin.read();
+						if(data == -1)
+							break;
+						fout.write(data);
+					}
+					
 				} catch(IOException e) {
 					e.printStackTrace();
 				}
 				System.out.println("Upload fileName : " + fpn);
 			}
-			result = "success";
+			jObj.put("success", "ok");
+			jObj.put("fileupload", "파일 업로드 성공");
 		} catch (Exception e) {
 			e.printStackTrace();
-			result = "fail";
+			jObj.put("success", "no");
+			jObj.put("fileupload", "파일 업로드 실패");
 		}
-		return result;
+		return jObj.toJSONString();
 	}
 	
 }
