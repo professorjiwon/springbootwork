@@ -30,4 +30,8 @@ public class MemberService {
 		return memberRepository.findMembers(search, pageable);
 	}
 
+	public List<Member> selectMembers4(String search) {
+		return memberRepository.findMembersNative(search);
+	}
+
 }

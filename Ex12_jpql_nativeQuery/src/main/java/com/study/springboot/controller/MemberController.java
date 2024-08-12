@@ -70,9 +70,4 @@ public class MemberController {
 		model.addAttribute("members", result);
 		return "selectList1";
 	}
-	
 }
-
-
-
-
