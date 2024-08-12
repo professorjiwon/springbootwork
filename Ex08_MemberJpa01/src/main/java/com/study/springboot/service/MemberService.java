@@ -18,8 +18,7 @@ public class MemberService {
 	public Member insert(Member member) {
 		// save() : insert할 때의 메소드(JPA에 API)
 		//			동일한 키가 있으면 update, 키가 없으면 insert
-		Member rMember = memberRepository.save(member);
-		return rMember;	
+		return memberRepository.save(member);	
 	}
 	
 	/*
