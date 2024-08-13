@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
 <link href="css/index.css" rel="stylesheet"/>
 </head>
 <body>
@@ -14,7 +15,8 @@
 			<tr>
 				<td>* ID</td>
 				<td>
-					<input name="id" required>
+					<input name="id" id="id" required>
+					<div id="checkResult" style="font-size:0.8em; display:none;"></div>
 				</td>
 			</tr>
 			<tr>
@@ -54,10 +56,35 @@
 					<input type="reset" value="초기화">
 				</td>
 			</tr>
-			
 		</table>
-		
 	</form>
-
+	
+	<script>
+		$(()=>{
+			const $idInput = $("#id");
+			$idInput.keyup(function() {
+				if($idInput.val().length >= 5) {
+					$.ajax({
+						url : "idCheck",
+						data : {id: $idInput.val()},
+						success : function(result) {
+							console.log(result);
+						},
+						error:function() {
+							console.log("아이디 중복체크 ajax통신 실패");
+						}
+					})
+				} else {
+					$("#checkResult").hide();
+				}
+			})
+		})
+	</script>
+		
 </body>
 </html>
+
+
+
+
+

@@ -23,8 +23,8 @@ import com.study.springboot.domain.Member;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 	
 	// JPQL 쿼리 : from뒤에는 영속성에 있는 엔티티명(DB테이블이 아님. 영속성 테이블명은 반드시 대문자로)
-	@Query("select m from JPAPAGING m where m.name like :name order by m.id desc")
-	List<Member> findByNameLike(@Param("name") String search);
+	@Query("select m from JPAPAGING m where m.name like :n1 order by m.id desc")
+	List<Member> findByNameLike(@Param("n1") String search);
 
 	@Query("select m from JPAPAGING m where m.name like :name")
 	List<Member> findMembers(@Param("name") String search, Sort sort);
