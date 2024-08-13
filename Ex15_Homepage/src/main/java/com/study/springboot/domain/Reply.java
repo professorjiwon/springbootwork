@@ -18,7 +18,7 @@ import lombok.NonNull;
 
 @Data
 @NoArgsConstructor
-@Entity(name="board2")
+@Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Reply {
 	@Id

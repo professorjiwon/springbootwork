@@ -12,6 +12,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -35,7 +36,7 @@ public class Board {
 	private String content;
 	@NonNull
 	private String writer;
-	@Column(insertable=false, columnDefinition="NUMBER DEFALUT 0")
+	@Column(insertable=false, columnDefinition="NUMBER DEFAULT 0")
 	private Long count;
 	
 	@CreatedDate
@@ -45,12 +46,4 @@ public class Board {
 	@LastModifiedDate
 	@Column(name="update_date")
 	private LocalDateTime updateDate;
-	
 }
-
-
-
-
-
-
-
