@@ -20,3 +20,13 @@ a {
 	background-color:rgb(90, 142, 144);
 	cursor: pointer;
 }
+.imgwrap {
+	text-align: center;
+}
+.imgwrap img {
+	margin-top: 70px;
+	width: 500px;
+}
+#enrollForm tr {
+	height: 40px;
+}
