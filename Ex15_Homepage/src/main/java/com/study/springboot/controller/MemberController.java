@@ -3,10 +3,12 @@ package com.study.springboot.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.study.springboot.domain.Member;
 import com.study.springboot.service.MemberService;
 
 @Controller
@@ -29,6 +31,12 @@ public class MemberController {
 	@ResponseBody
 	public boolean idCheck(@RequestParam("id") String id) {
 		return memberService.idCheck(id);
+	}
+	
+	@PostMapping("/memberInsert")
+	public String memberInsert(Member member) {
+		memberService.memberInsert(member);
+		return "redirect:/";
 	}
 	
 }
