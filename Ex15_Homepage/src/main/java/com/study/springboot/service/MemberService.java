@@ -1,5 +1,7 @@
 package com.study.springboot.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,10 @@ public class MemberService {
 
 	public Member memberInsert(Member member) {
 		return memberRepository.save(member);
+	}
+
+	public Optional<Member> login(Member member) {
+		return memberRepository.findById(member.getId());	
 	}
 	
 	
