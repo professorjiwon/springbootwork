@@ -27,7 +27,9 @@
 					<!--/* <td th:text="${board.bno}"></td> 
 					<td th:text="${state.count}"></td> */-->
 					<td th:text="${boardPage.totalElements - nowPage*boardPage.size - state.index}"></td>
-					<td th:text="${board.title}"></td>
+					<td>
+						<a th:href="@{detailForm(bno=${board.bno})}" th:text="${board.title}"></a>
+					</td>
 					<td th:text="${board.writer}"></td>
 					<td th:text="${board.count}"></td>
 					<td th:text="*{#temporals.format(board.createDate, 'yyyy-MM-dd')}"></td>
@@ -46,6 +48,7 @@
 				<strong th:if="${pageNumber == nowPage}" th:text="|[${pageNumber+1}]|"></strong>
 				<a th:unless="${pageNumber == nowPage}" th:href="@{list(nowPage=${pageNumber})}" th:text="|[${pageNumber+1}]|"></a>
 			</span>
+			<a th:if="${nowPage < boardPage.totalPages-1}" th:href="@{list(nowPage=${nowPage+1})}">...Next</a>
 		</div>
         <div th:if="${loginUser != null}" align="right">
 			<h4><a href="insertForm">[글쓰기]</a></h4>

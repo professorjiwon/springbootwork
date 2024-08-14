@@ -23,7 +23,7 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public String list(@RequestParam(value="nowPage", defaultValue="0") int nowPage, Model model) {
-		Page<Board> pageList = boardService.list(PageRequest.of(nowPage, 2, Sort.by(Sort.Direction.DESC, "bno")));
+		Page<Board> pageList = boardService.list(PageRequest.of(nowPage, 10, Sort.by(Sort.Direction.DESC, "bno")));
 		
 		int pagePerBlock = 5;	// [1][2][3][4][5]
 		int endPage = Math.min(pageList.getTotalPages(), nowPage + pagePerBlock);
@@ -45,7 +45,10 @@ public class BoardController {
 		return "redirect:/list";
 	}
 	
-	
+	@GetMapping("/detailForm")
+	public String detailForm() {
+		return "board/detailForm";
+	}
 	/*
 	@PostMapping("/insert")
 	public String insert(Board board, HttpSession session) {
