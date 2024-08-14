@@ -10,4 +10,9 @@ public class BoardController {
 	public String list() {
 		return "board/list";
 	}
+	
+	@GetMapping("/insertForm")
+	public String insertForm() {
+		return "board/insertForm";
+	}
 }
