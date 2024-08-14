@@ -36,6 +36,11 @@ public class MemberController {
 	public String enrollForm() {
 		return "member/enrollForm";
 	}
+
+	@GetMapping("/myPage")
+	public String myPage() {
+		return "member/myPage";
+	}
 	
 	@GetMapping("/idCheck")
 	@ResponseBody

@@ -11,7 +11,7 @@
 	<h1 align="center">게 시 판</h1>
 
     <div class="outer">
-        <div th:text="|총 게시글의 수 : |"></div>
+        <div th:text="|총 게시글의 수 : ${boardPage.totalElements}|"></div>
         <table align="center" id="list-area">
             <thead>
                 <tr>
@@ -23,13 +23,19 @@
                 </tr>
             </thead>
             <tbody>
-
+				<tr th:each="board, state: ${boardPage}">
+					<td th:text="${board.bno}"></td>
+					<td th:text="${board.title}"></td>
+					<td th:text="${board.writer}"></td>
+					<td th:text="${board.count}"></td>
+					<td th:text="*{#temporals.format(board.createDate, 'yyyy-MM-dd')}"></td>
+				</tr>
             </tbody>
         </table>
-        <div align="right">
-			<a href="insertForm">글쓰기</a>
+        
+        <div th:if="${loginUser != null}" align="right">
+			<h4><a href="insertForm">[글쓰기]</a></h4>
 		</div>
     </div>
-    
 </body>
 </html>
