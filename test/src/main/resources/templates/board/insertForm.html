@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/index.css" rel="stylesheet"/>
+<link href="css/boardList.css" rel="stylesheet"/>
+</head>
+<body>
+	<div th:replace="~{/fragments/header.html :: fragment-menu}"></div>
+	<h1 align="center">글 쓰 기</h1>
+	<div class="outer">
+		<form action="insert" method="post">
+			<table align="center">
+				<tr>
+					<td>작성자</td>
+					<td><input name="writer" th:value="${loginUser.id}"></td>
+				</tr>
+				<tr>
+					<td>제목</td>
+					<td><input name="title"></td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td><textarea name="content" rows="10" cols="50"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<input type="submit" value="등&ensp;록">&emsp;
+						<input type="reset" value="다시쓰기">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>		
+</body>
+</html>

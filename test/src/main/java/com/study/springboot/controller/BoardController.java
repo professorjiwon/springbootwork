@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.study.springboot.domain.Board;
 import com.study.springboot.service.BoardService;
-import com.study.springboot.service.ReplyService;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -21,9 +20,6 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
-	
-	@Autowired
-	ReplyService replyService;
 	
 	@GetMapping("/list")
 	public String list(@RequestParam(value="nowPage", defaultValue="0") int nowPage, Model model) {
@@ -46,25 +42,20 @@ public class BoardController {
 	@PostMapping("/insert")
 	public String insert(Board board) {
 		boardService.insert(board);
-		return "redirect:list";
+		return "redirect:/list";
 	}
 	
 	@GetMapping("/detailForm")
-	public String detailForm(@RequestParam(value="bno") Long bno, Model model) {
-		model.addAttribute("board", boardService.selectDetail(bno).get());
-		model.addAttribute("reply", replyService.selectAll(bno));
+	public String detailForm() {
 		return "board/detailForm";
 	}
-
-	@PostMapping("/update")
-	public String update(Board board, Model model) {
-		boardService.update(board);
+	/*
+	@PostMapping("/insert")
+	public String insert(Board board, HttpSession session) {
+		Member m = (Member)session.getAttribute("loginUser");
+		board.setWriter(m.getName());
+		boardService.insert(board);
 		return "redirect:list";
 	}
-	
-	@GetMapping("/delete")
-	public String delete(@RequestParam(value="bno") Long bno) {
-		boardService.delete(bno);
-		return "redirect:list";
-	}
+	*/
 }
