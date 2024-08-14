@@ -24,7 +24,9 @@
             </thead>
             <tbody>
 				<tr th:each="board, state: ${boardPage}">
-					<td th:text="${board.bno}"></td>
+					<!--/* <td th:text="${board.bno}"></td> 
+					<td th:text="${state.count}"></td> */-->
+					<td th:text="${boardPage.totalElements - nowPage*boardPage.size - state.index}"></td>
 					<td th:text="${board.title}"></td>
 					<td th:text="${board.writer}"></td>
 					<td th:text="${board.count}"></td>
@@ -33,6 +35,18 @@
             </tbody>
         </table>
         
+        <!-- 페이징 처리 -->
+        <div align="center">
+			<a th:if="${nowPage > 0}" th:href="@{list(nowPage=${nowPage-1})}">Prev...</a>
+			<!--
+				thymeleaf에서는 #numbers라는 숫자 포맷 메소드를 지원
+				#numbers.sequence() 메소드 sequence(start, end, step)
+			-->
+			<span th:each="pageNumber : ${#numbers.sequence(nowPage, endPage-1)}">
+				<strong th:if="${pageNumber == nowPage}" th:text="|[${pageNumber+1}]|"></strong>
+				<a th:unless="${pageNumber == nowPage}" th:href="@{list(nowPage=${pageNumber})}" th:text="|[${pageNumber+1}]|"></a>
+			</span>
+		</div>
         <div th:if="${loginUser != null}" align="right">
 			<h4><a href="insertForm">[글쓰기]</a></h4>
 		</div>
