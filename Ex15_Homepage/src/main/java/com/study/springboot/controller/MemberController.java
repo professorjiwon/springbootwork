@@ -76,5 +76,4 @@ public class MemberController {
 			status.setComplete();
 		return "redirect:/";
 	}
-
 }

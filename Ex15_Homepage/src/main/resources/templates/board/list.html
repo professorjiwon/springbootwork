@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/index.css" rel="stylesheet"/>
+<link href="css/boardList.css" rel="stylesheet"/>
+</head>
+<body>
+	<div th:replace="~{/fragments/header.html :: fragment-menu}"></div>
+	<h1 align="center">게 시 판</h1>
+
+    <div class="outer">
+        <div th:text="|총 게시글의 수 : |"></div>
+        <table align="center" id="list-area">
+            <thead>
+                <tr>
+                    <th width="11%">글번호</th>
+                    <th width="45%">제목</th>
+                    <th width="14%">작성자</th>
+                    <th width="12%">조회수</th>
+                    <th width="18%">작성일</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
