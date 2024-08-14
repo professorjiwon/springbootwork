@@ -34,13 +34,14 @@
 					<td colspan="2" >
 						 <!--/* 
 							<h4 th:text="|${loginUser.name}님 환영합니다|"></h4>
+							<h4 th:text="${loginUser.name} + '님 환영합니다'"></h4>
 						 */-->
 						 <h4>[[${loginUser.name}]]님 환영합니다</h4>
 					</td>
 				</tr>
 				<tr>
 					<td width="90"><a href="">마이페이지</a></td>
-					<td><a href="">로그아웃</a></td>
+					<td><a href="logout">로그아웃</a></td>
 				</tr>
 			</table>
 		</div>
