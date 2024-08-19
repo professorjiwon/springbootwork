@@ -17,6 +17,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.study.springboot.domain.Member;
 import com.study.springboot.service.MemberService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @SessionAttributes({"loginUser"})
 public class MemberController {
@@ -26,6 +28,9 @@ public class MemberController {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	HttpSession session;
 	
 	@RequestMapping("/")
 	public String root() {
@@ -67,7 +72,11 @@ public class MemberController {
 				// 클래스에 @SessionAttributes({"loginUser"})어노테이션 달기
 			}
 		}
-		return "redirect:/";
+		String url = (String)session.getAttribute("boardDetailUrl");
+		if(url == null) {
+			url = "/";
+		}
+		return "redirect:" + url;
 	}
 	
 	/*

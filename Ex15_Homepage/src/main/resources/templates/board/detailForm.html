@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td th:text="${board.writer}"></td>
+					<td th:text="${board.writer}" readonly></td>
 				</tr>
 				<tr>
 					<td>작성일</td>
@@ -93,7 +93,7 @@
 					url : "rinsert",
 					data : {
 						refBno : "[[${board.bno}]]",
-						writer : "[[${loginUser.id}]]",
+						writer : "[[${loginUser != null ? loginUser.id : ''}]]",
 						content : $("#replyContent").val()
 					},
 					type: "post",

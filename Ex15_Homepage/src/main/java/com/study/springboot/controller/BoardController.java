@@ -15,6 +15,8 @@ import com.study.springboot.domain.Board;
 import com.study.springboot.service.BoardService;
 import com.study.springboot.service.ReplyService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @SessionAttributes("loginUser")
 public class BoardController {
@@ -50,9 +52,10 @@ public class BoardController {
 	}
 	
 	@GetMapping("/detailForm")
-	public String detailForm(@RequestParam(value="bno") Long bno, Model model) {
+	public String detailForm(@RequestParam(value="bno") Long bno, Model model, HttpSession session) {
 		model.addAttribute("board", boardService.selectDetail(bno).get());
 		model.addAttribute("reply", replyService.selectAll(bno));
+		session.setAttribute("boardDetailUrl", "/detailForm?bno=" + bno);
 		return "board/detailForm";
 	}
 

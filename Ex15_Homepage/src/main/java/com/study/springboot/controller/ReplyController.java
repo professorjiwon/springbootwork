@@ -17,9 +17,6 @@ public class ReplyController {
 	@PostMapping("/rinsert")
 	@ResponseBody
 	public boolean rinsert(Reply reply) {
-		System.out.println("content : " + reply.getContent());
-		System.out.println("refBno : " + reply.getRefBno());
-		System.out.println("writer : " + reply.getWriter());
 		replyService.rinsert(reply);
 		return true;
 	}
