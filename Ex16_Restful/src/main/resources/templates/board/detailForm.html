@@ -65,16 +65,16 @@
 					<td colspan="3" style="text-align:center" th:text="|댓글(${reply.size()})|"></td>
 				</tr>
 				<tr>
-					<td>작성자</td>
-					<td>내용</td>
-					<td>작성일</td>
+					<td width="18%" align="center"><b>작성자</b></td>
+					<td width="60%" align="center"><b>내용</b></td>
+					<td width="22%" align="center"><b>작성일</b></td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="r : ${reply}">
-					<td th:text="${r.writer}"></td>
+					<td th:text="${r.writer}" align="center"></td>
 					<td th:text="${r.content}"></td>
-					<td th:text="*{#temporals.format(r.createDate, 'yyyy-MM-dd')}"></td>
+					<td th:text="*{#temporals.format(r.createDate, 'yyyy-MM-dd')}"  align="center"></td>
 				</tr>
 			</tbody>
 		</table>

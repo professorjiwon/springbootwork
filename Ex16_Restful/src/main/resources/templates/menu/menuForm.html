@@ -141,19 +141,52 @@
 							<tbody>
 						`;
 			// data반복처리
-			data.forEach(item => {
-				value += `<tr>
-							<td>${item.id}</td>
-							<td>${item.name}</td>
-							<td>${item.price}</td>
-							<td>${item.restaurant}</td>
-							<td>${item.taste}</td>
-							<td>${item.type}</td>
-						  </tr>`;
-			});
+			if(data.length > 0) {
+				data.forEach(item => {
+					value += `<tr>
+								<td><a href="javascript:findById('${item.id}')">${item.id}</a></td>
+								<td>${item.name}</td>
+								<td>${item.price}</td>
+								<td>${item.restaurant}</td>
+								<td>${item.taste}</td>
+								<td>${item.type}</td>
+							  </tr>`;
+				});
+			} else {
+				value += '<tr><td colspan="6" class="menu-test">조회된 결과가 없습니다</td></tr>'
+			}
 			value += `</tbody>
 						</table>`;
 			container.innerHTML = value;			
+		}
+		
+		const findById = id => {
+			$.ajax({
+				url: `/menu/${id}`,
+				method : 'GET',
+				success (result) {
+					console.log(result);
+				},
+				error(jqXHR, testStatus, errorMsg) {
+					// jQuery에서 파라미터 jqXHR, testStatus, errorMsg세가지를 제공
+					/*
+					- jqXHR 파라미터
+					  비동기를 처리하는 주객체는 XMLHttpRequest
+					  이것을 json으로 처리하는 것이 첫번재 인자로 들어옴(jqXHR)
+					  jqXHR.status : 500
+					  jqXHR.statusText : "error"
+					  jqXHR.reponseText : url의 full response
+					*/
+					console.log(`jqXHR : ${jqXHR}`);
+					console.log(`jqXHR.status : ${jqXHR.status}`);
+					console.log(`jqXHR.statusText : ${jqXHR.statusText}`);
+					console.log(`testStatus : ${testStatus}`);
+					console.log(`errorMsg : ${errorMsg}`);
+					if(jqXHR.status == 404) {
+						alert("조회한 메뉴는 없습니다.");
+					}
+				}
+			});
 		}
 	</script>
 </body>
