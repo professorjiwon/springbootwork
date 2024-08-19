@@ -82,6 +82,46 @@
 				});
 			})
 		</script>
+		
+		<!-- 3. GET /menu/type/KR/taste/MILD -->
+		<div class="menu-test">
+			<h3>메뉴 타입과 맛별 조회</h3>
+			<form id="menuTypeTasteFrm" name="menuTypeTasteFrm">
+				<div class="menuRadio">
+					<input type="radio" name="type" value="KR">한식
+					<input type="radio" name="type" value="CH">중식
+					<input type="radio" name="type" value="JP">일식
+				</div>
+				&emsp;&emsp;|&emsp;&emsp;
+				<div class="menuRadio">
+					<input type="radio" name="taste" value="MILD">순한맛
+					<input type="radio" name="taste" value="HOT">매운맛
+				</div>
+				<br><br>
+				<button class="btn">조 회</button>
+			</form>
+		</div>
+		<br>
+		<div class="result" id="menuTypeTaste-result"></div>
+		<hr>
+		<script>
+			$(() => {
+				$("#menuTypeTasteFrm").on('submit', e => {
+					e.preventDefault();
+					const type = e.target.type.value;
+					const taste = e.target.taste.value;
+					$.ajax({
+						url: `/menu/type/${type}/taste/${taste}`,
+						method: 'GET',
+						success (result) {
+							console.log(result);
+							menuTable('#menuTypeTaste-result', result);
+						},
+						error : console.log
+					})
+				})
+			})
+		</script>
 	</div>
 	
 	<script>

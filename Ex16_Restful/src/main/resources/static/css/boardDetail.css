@@ -1,7 +1,6 @@
 @charset "UTF-8";
 #detail{width: 100%;}
-#detail table {border:1px solid;}
 #detail td {height:25px; }
 #reply {border:1px solid; border-collapse: collapse;}
-#reply th {height:70px; border:1px solid;}
+#reply th {height:70px;}
 #reply td {height:25px; border:1px solid;}
