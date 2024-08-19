@@ -3,8 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+<link href="css/index.css" rel="stylesheet"/>
+<link href="css/boardList.css" rel="stylesheet"/>
 </head>
+	<!--
+	GET /menu : 전체메뉴조회
+	GET /menu/type/kr : 한식만 조회
+	GET /menu/type/ch : 한식만 조회
+	GET /menu/type/jp : 한식만 조회
+	GET /menu/taste/mild : 순한맛 조회
+	GET /menu/taste/hot : 순한맛 조회
+	GET /menu/10 : 10번 메뉴 조회
+	
+	POST /menu : 메뉴한건 등록
+	
+	PUT /menu : 메뉴 한건 전체 수정
+	PATCH /menu : 메뉴 한건 일부 수정
+	
+	DELETE /menu/10 : 메뉴 한건 삭제
+	-->
 <body>
-	menuForm
+	<div th:replace="~{/fragments/header.html :: fragment-menu}"></div>
+	<h1 align="center">MENU RESTful API</h1>
+	
+	<div class="outer">
+		<!-- GET /menu : 전체메뉴조회 -->
+		<div class="menu-test">
+			<h3>전체 메뉴 조회</h3>
+			<button type="button" id="menuAllList" class="btn">조 회</button><br><br>
+		</div>
+		<div id="menu-result"></div>
+		
+		<hr>
+		
+		<script>
+			$(() => {
+				$("#menuAllList").on('click', () => {
+					$.ajax({
+						url: '/menu',
+						method:'GET',
+						success (result) {
+							console.log(result);
+							menuTable('#menu-result', result);
+						},
+						error : console.log
+					})
+				})
+			})
+		</script>
+	</div>
+	
+	<script>
+		const menuTable = (selector, data) => {
+			const container = document.querySelector(selector);
+			let value = `<table id="list-area" align="center">
+							<thead>
+								<tr>
+									<th width="10%">번호</th>
+									<th width="20%">메뉴명</th>
+									<th width="20%">가격</th>
+									<th width="20%">음식점명</th>
+									<th width="20%">맛</th>
+									<th width="10%">종류</th>
+								</tr>
+							<thead>
+							<tbody>
+						`;
+			// data반복처리
+			data.forEach(item => {
+				value += `<tr>
+							<td>${item.id}</td>
+							<td>${item.name}</td>
+							<td>${item.price}</td>
+							<td>${item.restaurant}</td>
+							<td>${item.taste}</td>
+							<td>${item.type}</td>
+						  </tr>`;
+			});
+			value += `</tbody>
+						</table>`;
+			container.innerHTML = value;			
+		}
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
