@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/index.css" rel="stylesheet"/>
+<link href="css/boardList.css" rel="stylesheet"/>
+</head>
+<body>
+	<div th:replace="~{/fragments/header.html :: fragment-menu}"></div>
+	<h1 align="center">게 시 판</h1>
+
+    <div class="outer">
+        <div th:text="|총 게시글의 수 : ${boardPage.totalElements}|"></div>
+        <table align="center" id="list-area">
+            <thead>
+                <tr>
+                    <th width="11%">글번호</th>
+                    <th width="45%">제목</th>
+                    <th width="14%">작성자</th>
+                    <th width="12%">조회수</th>
+                    <th width="18%">작성일</th>
+                </tr>
+            </thead>
+            <tbody>
+				<tr th:each="board, state: ${boardPage}">
+					<!--/* <td th:text="${board.bno}"></td> 
+					<td th:text="${state.count}"></td> */-->
+					<td th:text="${boardPage.totalElements - nowPage*boardPage.size - state.index}"></td>
+					<td>
+						<a th:href="@{detailForm(bno=${board.bno})}" th:text="${board.title}"></a>
+					</td>
+					<td th:text="${board.writer}"></td>
+					<td th:text="${board.count}"></td>
+					<td th:text="*{#temporals.format(board.createDate, 'yyyy-MM-dd')}"></td>
+				</tr>
+            </tbody>
+        </table>
+        
+        <!-- 페이징 처리 -->
+        <div align="center">
+			<a th:if="${nowPage > 0}" th:href="@{list(nowPage=${nowPage-1})}">Prev...</a>
+			<!--
+				thymeleaf에서는 #numbers라는 숫자 포맷 메소드를 지원
+				#numbers.sequence() 메소드 sequence(start, end, step)
+			-->
+			<span th:each="pageNumber : ${#numbers.sequence(nowPage, endPage-1)}">
+				<strong th:if="${pageNumber == nowPage}" th:text="|[${pageNumber+1}]|"></strong>
+				<a th:unless="${pageNumber == nowPage}" th:href="@{list(nowPage=${pageNumber})}" th:text="|[${pageNumber+1}]|"></a>
+			</span>
+			<a th:if="${nowPage < boardPage.totalPages-1}" th:href="@{list(nowPage=${nowPage+1})}">...Next</a>
+		</div>
+        <div th:if="${loginUser != null}" align="right">
+			<h4><a href="insertForm">[글쓰기]</a></h4>
+		</div>
+    </div>
+</body>
+</html>

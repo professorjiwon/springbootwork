@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+<link href="css/index.css" rel="stylesheet"/>
+<link href="css/boardList.css" rel="stylesheet"/>
+</head>
+<body>
+	<div th:replace="~{/fragments/header.html :: fragment-menu}"></div>
+	
+	<div class="outer" align="center">
+		<br>
+		<h1 align="center">게시판 상세조회</h1>
+		
+		<br>
+		
+		<form action="update" method="post">
+			<table align="center">
+				<tr>
+					<td>제목</td>
+					<td><input name="title" th:value="${board.title}"></td>
+				</tr>
+				<tr>
+					<td>작성자</td>
+					<td th:text="${board.writer}" readonly></td>
+				</tr>
+				<tr>
+					<td>작성일</td>
+					<td th:text="*{#temporals.format(board.createDate, 'yyyy-MM-dd')}"></td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td><textarea name="content" cols="50" rows="10" th:text="${board.content}"></textarea></td>
+				</tr>
+				<span th:if="${loginUser != null}">
+					<span th:if="${loginUser.id == board.writer}">
+					<tr>
+						<td colspan="2" align="center">
+							<input type="submit" value="수정">
+							<input th:if="${reply.size <= 0}" type="button" value="삭제" id="delete">
+						</td>
+					</tr>
+					</span>
+				</span>
+			</table>
+			<input type="hidden" name="bno" th:value="${board.bno}">
+		</form>
+		
+		<br>
+		
+		<table align="center">
+			<thead>
+				<tr>
+					<th width="100">댓글작성</th>
+					<span th:if="${loginUser != null}">
+						<th width="400"><textarea cols="53" rows="3" id="replyContent"></textarea></th>
+						<th width="100"><button id="insertReply">등록</button></th>
+					</span>
+					<th colspan="2" th:unless="${loginUser != null}">로그인 후 댓글을 작성할 수 있습니다</th>
+				</tr>
+				<tr>
+					<th colspan="3" style="text-align:center" th:text="|댓글(${reply.size()})|"></th>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<th>내용</th>
+					<th>작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="r : ${reply}">
+					<td th:text="${r.writer}"></td>
+					<td th:text="${r.content}"></td>
+					<td th:text="*{#temporals.format(r.createDate, 'yyyy-MM-dd')}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<script>
+		$(() => {
+			$("#delete").on('click', function() {
+		        let result = confirm("정말 삭제하시겠습니까?");
+		        if(result) {
+		            location.href = 'delete?bno=[[${board.bno}]]';
+		        }
+		    });
+			
+			$("#insertReply").on('click', function() {
+				$.ajax({
+					url : "rinsert",
+					data : {
+						refBno : "[[${board.bno}]]",
+						writer : "[[${loginUser != null ? loginUser.id : ''}]]",
+						content : $("#replyContent").val()
+					},
+					type: "post",
+					success : function(result) {
+						console.log(result);
+					},
+					error:function() {
+						console.log("댓글 등록 실패")
+					}
+				})
+			})
+		})
+	</script>
+	
+</body>
+</html>
