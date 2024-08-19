@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -97,7 +98,6 @@ public class MenuRestController {
 		} else {
 			return ResponseEntity.notFound().build();		// notFound() : 404
 		}
-		
 	}
 	
 	@PostMapping()
@@ -105,6 +105,7 @@ public class MenuRestController {
 		Menu reMenu = menuService.insertMenu(menu);
 		return ResponseEntity.created(URI.create("/menu/" + reMenu.getId())).build();
 	}
+	
 }
 
 

@@ -187,6 +187,7 @@
 				메뉴번호 : <input name="id"><br><br>
 				<button class="btn">검 색</button>
 			</form>
+			<br><br>
 			<form name="menuUpdateFrm" id="menuUpdateFrm">
 				음식점 : <input name="restaurant" required><br><br>
 				메뉴명 : <input name="name" required><br><br>
@@ -260,6 +261,14 @@
 				method : 'GET',
 				success (result) {
 					console.log(result);
+					const frm = document.menuUpdateFrm;
+					const {id, restaurant, name, price, type, taste} = result;
+					frm.id.value = id;
+					frm.restaurant.value = restaurant;
+					frm.name.value = name;
+					frm.price.value = price;
+					frm.type.value = type;
+					frm.taste.value = taste;
 				},
 				error(jqXHR, testStatus, errorMsg) {
 					// jQuery에서 파라미터 jqXHR, testStatus, errorMsg세가지를 제공
