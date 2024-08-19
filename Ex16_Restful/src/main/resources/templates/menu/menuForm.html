@@ -122,6 +122,33 @@
 				})
 			})
 		</script>
+		
+		<!-- 4. POST /menu -->
+		<div class="menu-test">
+			<h3>메뉴 등록하기</h3>
+			<form name="menuEnrollFrm" id="menuEnrollFrm">
+				음식점 : <input name="restaurant" required><br><br>
+				메뉴명 : <input name="name" required><br><br>
+				가 격 : <input name="price" required><br><br>
+				<div class="menuRadio">
+					<input type="radio" name="type" value="KR">한식
+					<input type="radio" name="type" value="CH">중식
+					<input type="radio" name="type" value="JP">일식
+				</div>
+				<br><br>
+				<div class="menuRadio">
+					<input type="radio" name="taste" value="MILD">순한맛
+					<input type="radio" name="taste" value="HOT">매운맛
+				</div>
+				<br><br>
+				<button class="btn">등 록</button>
+			</form>
+		</div>
+		<hr>
+		<script>
+			
+		</script>
+		
 	</div>
 	
 	<script>
