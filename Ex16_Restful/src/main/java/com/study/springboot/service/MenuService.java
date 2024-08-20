@@ -37,4 +37,9 @@ public class MenuService {
 		return menuRepository.save(menu);
 	}
 
+	public Menu updateMenu(Menu menu) {
+		// Menu reMenu = menuRepository.findById(menu.getId()).get();
+		return menuRepository.save(menu);
+	}
+
 }

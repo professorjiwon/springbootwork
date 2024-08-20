@@ -106,6 +106,12 @@ public class MenuRestController {
 		return ResponseEntity.created(URI.create("/menu/" + reMenu.getId())).build();
 	}
 	
+	@PutMapping()
+	public ResponseEntity<?> updateMenu(@RequestBody Menu menu) {
+		Menu reMenu = menuService.updateMenu(menu);
+		return ResponseEntity.ok(reMenu);
+	}
+	
 }
 
 

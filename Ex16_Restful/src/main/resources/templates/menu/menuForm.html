@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -214,6 +214,33 @@
 					e.preventDefault();
 					findById(e.target.id.value);
 				})
+				
+				$("#menuUpdateFrm").on('submit', e => {
+					e.preventDefault();
+					const frmData = new FormData(e.target);
+					const menu = {};
+					frmData.forEach((value, key) => {
+						menu[key] = value;
+					});
+					
+					$.ajax({
+						url: '/menu',
+						data : JSON.stringify(menu),
+						method : 'PUT',
+						contentType : 'application/json; charset=utf-8',
+						success (result) {
+							console.log(result);
+							// http상태코드가 200(ok)일 때
+							if(result != null) {
+								alert("수정되었습니다");
+							}
+						},
+						error : console.log,
+						complete() {
+							e.target.reset();
+						}
+					})
+				})
 			})	
 		</script>
 		
@@ -260,7 +287,6 @@
 				url: `/menu/${id}`,
 				method : 'GET',
 				success (result) {
-					console.log(result);
 					const frm = document.menuUpdateFrm;
 					const {id, restaurant, name, price, type, taste} = result;
 					frm.id.value = id;
