@@ -38,8 +38,11 @@ public class MenuService {
 	}
 
 	public Menu updateMenu(Menu menu) {
-		// Menu reMenu = menuRepository.findById(menu.getId()).get();
 		return menuRepository.save(menu);
+	}
+
+	public void deleteMenu(Long id) {
+		menuRepository.deleteById(id);
 	}
 
 }

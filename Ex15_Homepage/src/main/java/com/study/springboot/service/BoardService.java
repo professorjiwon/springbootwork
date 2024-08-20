@@ -39,7 +39,7 @@ public class BoardService {
 		System.out.println("rboard : " + rboard);
 		rboard.setTitle(board.getTitle());
 		rboard.setContent(board.getContent());
-		return boardRepository.save(rboard);
+		return boardRepository.save(board);
 	}
 
 	public void delete(Long bno) {
