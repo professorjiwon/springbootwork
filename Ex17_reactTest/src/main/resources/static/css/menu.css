@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.btn {
+	padding: 5px 15px;
+	border-radius: 4px;
+	cursor: pointer;
+	width: 100px;
+}
+.menu-test {
+	text-align: center;
+}
+.menu-test select {
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+}
+.menuRadio {
+	display: inline-block;
+}

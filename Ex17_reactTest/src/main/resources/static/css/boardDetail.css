@@ -1,0 +1,6 @@
+@charset "UTF-8";
+#detail{width: 100%;}
+#detail td {height:25px; }
+#reply {width: 600px; border:1px solid; border-collapse: collapse;}
+#reply th {height:70px;}
+#reply td {height:25px; border:1px solid;}

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+.outer{
+    width: 700px;
+    margin: 0 auto;
+}
+#list-area {
+	margin-top: 10px;
+	margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+#list-area th, #list-area td {
+    border: 1px solid;
+    height: 30px;
+}
