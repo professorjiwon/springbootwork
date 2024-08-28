@@ -39,7 +39,9 @@ function App() {
                 console.log("실패");
              })
       }}>서버에서 메뉴가져오기</button>
-
+      
+	  <br/><br/>
+	  
       <button onClick={() => {
         axios.post('/api/addmenu',{restaurant:'꾸이한끼', name:'불갈비덮밥', price:12000, type:'KR', taste:'HOT'})
             .then(result => {
