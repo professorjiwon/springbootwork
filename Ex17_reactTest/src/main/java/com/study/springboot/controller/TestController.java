@@ -34,5 +34,4 @@ public class TestController {
 	public Menu addMenu(@RequestBody Menu m) {
 		return menuService.insertMenu(m);
 	}
-	
 }
